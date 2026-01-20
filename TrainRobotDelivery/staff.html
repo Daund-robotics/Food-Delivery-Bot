@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Staff Interface | Order Management</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Specific styles for staff interface to look like a modern dashboard */
+        .staff-header h1 { color: #4c51bf; font-size: 1.6em; }
+        .staff-header p { color: #718096; font-size: 0.9em; margin-top: 5px; }
+        .interface-content { padding: 0 10px 20px; }
+        .reset-btn {
+            background-color: #f7a049; /* Orange for reset/warning */
+            color: white;
+            padding: 8px 12px;
+            border-radius: 20px;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            font-size: 0.85em;
+        }
+        .reset-btn:hover { background-color: #e08b35; }
+
+        /* Ensure .interface-header is flexible enough for 3 elements */
+        .interface-header.staff-header {
+            display: grid;
+            grid-template-columns: auto 1fr auto;
+            align-items: center;
+            padding: 15px 10px 10px;
+        }
+        .staff-header > div {
+            text-align: center;
+        }
+        .staff-header > button {
+            margin: 0 5px;
+        }
+        
+        /* Basic table styling for a clean look */
+        #orderTable {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            background: white;
+        }
+        #orderTable th, #orderTable td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        #orderTable thead th {
+            background-color: #edf2f7;
+            color: #4a5568;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.85em;
+        }
+        .action-btn {
+            padding: 8px 12px;
+            border: none;
+            border-radius: 4px;
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        .action-btn:hover {
+            opacity: 0.9;
+        }
+        .order-status {
+            font-weight: 700;
+        }
+    </style>
+</head>
+<body class="interface-body">
+    <div class="interface-container" style="max-width: 900px;">
+        <header class="interface-header staff-header">
+            <button class="nav-button" onclick="window.location.href='index.html'">Logout</button>
+            <div>
+                <h1>Kitchen Order Dashboard</h1>
+                <p>Monitor pending orders and manage robot loading.</p>
+            </div>
+            <button class="reset-btn" onclick="resetOrders()">Reset Orders</button> 
+        </header>
+
+        <main class="interface-content">
+            <section id="pendingOrders">
+                <h2>New Orders (Awaiting Preparation)</h2>
+                
+                <table id="orderTable">
+                    <thead>
+                        <tr>
+                            <th>Order ID</th>
+                            <th>Seat No.</th>
+                            <th>Order Details</th>
+                            <th>Time Placed</th>
+                            <th>Action (Preparation)</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td colspan="6">Loading orders...</td></tr>
+                    </tbody>
+                </table>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', loadOrders);
+
+        function loadOrders() {
+            const orders = JSON.parse(localStorage.getItem('pendingOrders')) || [];
+            const tbody = document.querySelector('#orderTable tbody');
+            tbody.innerHTML = ''; 
+
+            if (orders.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="6">No pending orders at the moment.</td></tr>';
+                return;
+            }
+
+            orders.forEach((order, index) => {
+                const row = tbody.insertRow();
+                
+                const isPending = order.status === 'Pending';
+                
+                // Creates the "Order Prepared" button only if status is 'Pending'
+                const actionCell = isPending 
+                    ? `<button class="action-btn" style="background-color: #f03e3e;" onclick="orderPrepared(${index})">Order Prepared</button>`
+                    : 'Ready for Robot';
+                
+                row.innerHTML = `
+                    <td>#${order.id}</td>
+                    <td>
+                        <span style="font-size: 1.5em; font-weight: 700; color: ${isPending ? '#e53e3e' : '#38a169'}">
+                            ${order.seat}
+                        </span>
+                    </td>
+                    <td>${order.items}</td>
+                    <td>${order.time}</td>
+                    <td>${actionCell}</td>
+                    <td>
+                        <span id="status-${order.id}" class="order-status" style="color: ${isPending ? '#e53e3e' : '#48bb78'}">
+                            ${order.status}
+                        </span>
+                    </td>
+                `;
+            });
+        }
+
+        function orderPrepared(orderIndex) {
+            let orders = JSON.parse(localStorage.getItem('pendingOrders')) || [];
+            
+            if (orders[orderIndex].status !== 'Pending') return;
+
+            // Update status (Simulating preparation complete)
+            orders[orderIndex].status = 'Prepared';
+            localStorage.setItem('pendingOrders', JSON.stringify(orders));
+            
+            // ⭐ CHANGED: Redirect to the specified IP address and path
+            window.location.href = 'http://10.84.128.214/staff';
+        }
+
+        function resetOrders() {
+            if (confirm("Are you sure you want to reset ALL pending and prepared orders? This action cannot be undone.")) {
+                localStorage.removeItem('pendingOrders');
+                loadOrders(); // Reload the table to show it's empty
+                alert("All orders have been successfully reset.");
+            }
+        }
+    </script>
+</body>
+</html>

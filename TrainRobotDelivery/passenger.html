@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Passenger Interface | Order Food</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="interface-body">
+    <div class="interface-container">
+        <header class="interface-header">
+            <button class="nav-button" onclick="window.location.href='index.html'">Home</button>
+            <h1>Delicious food for you</h1>
+            <button id="myOrdersBtn" class="nav-button primary-btn" onclick="window.location.href='http://10.84.128.214/passenger'">My Orders</button>
+        </header>
+
+        <main class="interface-content">
+
+            <div class="search-bar">
+                <span class="icon">🔍</span>
+                <input type="text" placeholder="Search Food or Drink">
+            </div>
+
+            <section id="menuSection">
+                <div id="menuCards">
+                    
+                    <div class="food-card">
+                        <img src="https://nfcihospitality.com/wp-content/uploads/2024/08/North-Indias-Veg.-Thali-1024x683.jpg" alt="Veg Thali" class="food-card-image"> 
+                        <div class="food-card-details">
+                            <div>
+                                <h3>Veg Thali</h3>
+                                <p style="font-size: 0.8em; color: #718096; margin-bottom: 5px;">Indian, Full Meal</p>
+                            </div>
+                            <div class="food-card-info">
+                                <span class="food-card-price">₹ 250.00</span>
+                                <button class="action-btn" onclick="addToCart('Veg Thali', 250)">Add to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="food-card">
+                        <img src="https://instamart-media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,h_960,w_960//InstamartAssets/samosa.webp?updatedAt=1727156367955" alt="Samosa" class="food-card-image"> 
+                        <div class="food-card-details">
+                            <div>
+                                <h3>Samosa (2 Pcs)</h3>
+                                <p style="font-size: 0.8em; color: #718096; margin-bottom: 5px;">Snack, Appetizer</p>
+                            </div>
+                            <div class="food-card-info">
+                                <span class="food-card-price">₹ 50.00</span>
+                                <button class="action-btn" onclick="addToCart('Samosa (2 Pcs)', 50)">Add to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="food-card">
+                        <img src="https://blog.swiggy.com/wp-content/uploads/2024/11/Image-1_mumbai-vada-pav-1024x538.png" alt="Pav Vada" class="food-card-image"> 
+                        <div class="food-card-details">
+                            <div>
+                                <h3>Vada Pav</h3>
+                                <p style="font-size: 0.8em; color: #718096; margin-bottom: 5px;">Mumbai Special</p>
+                            </div>
+                            <div class="food-card-info">
+                                <span class="food-card-price">₹ 40.00</span>
+                                <button class="action-btn" onclick="addToCart('Vada Pav', 40)">Add to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="food-card">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR8QmnRyLKIOqyKHyqsjGr8DPltNiWrYMDGlA&s" alt="Noodles" class="food-card-image"> 
+                        <div class="food-card-details">
+                            <div>
+                                <h3>Veg Noodles</h3>
+                                <p style="font-size: 0.8em; color: #718096; margin-bottom: 5px;">Chinese, Fast Food</p>
+                            </div>
+                            <div class="food-card-info">
+                                <span class="food-card-price">₹ 160.00</span>
+                                <button class="action-btn" onclick="addToCart('Veg Noodles', 160)">Add to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="food-card">
+                        <img src="https://content.jdmagicbox.com/comp/pune/d7/020pxx20.xx20.121207123930.b7d7/catalogue/hot-pizza-rasta-peth-pune-pizza-outlets-jaih18igmz.jpg" alt="Cheese Pizza" class="food-card-image"> 
+                        <div class="food-card-details">
+                            <div>
+                                <h3>Small Cheese Pizza</h3>
+                                <p style="font-size: 0.8em; color: #718096; margin-bottom: 5px;">Italian, Fast Food</p>
+                            </div>
+                            <div class="food-card-info">
+                                <span class="food-card-price">₹ 220.00</span>
+                                <button class="action-btn" onclick="addToCart('Small Cheese Pizza', 220)">Add to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="food-card">
+                        <img src="https://imgmediagumlet.lbb.in/media/2025/01/6790b9b0e59da653ef5df1de_1737537968281.jpg" alt="Burger" class="food-card-image"> 
+                        <div class="food-card-details">
+                            <div>
+                                <h3>Veg Burger</h3>
+                                <p style="font-size: 0.8em; color: #718096; margin-bottom: 5px;">Fast Food, Sandwich</p>
+                            </div>
+                            <div class="food-card-info">
+                                <span class="food-card-price">₹ 130.00</span>
+                                <button class="action-btn" onclick="addToCart('Veg Burger', 130)">Add to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="food-card">
+                        <img src="https://authenticroyal.com/wp-content/uploads/2024/10/royal-rice-may-220461.jpg" alt="Veg Biryani" class="food-card-image"> 
+                        <div class="food-card-details">
+                            <div>
+                                <h3>Veg Biryani</h3>
+                                <p style="font-size: 0.8em; color: #718096; margin-bottom: 5px;">North Indian Cuisine</p>
+                            </div>
+                            <div class="food-card-info">
+                                <span class="food-card-price"><small>₹ 200</small> ₹ 180.00</span>
+                                <button class="action-btn" onclick="addToCart('Veg Biryani', 180)">Add to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="food-card">
+                         <img src="https://content.jdmagicbox.com/v2/comp/mumbai/x7/022pxx22.xx22.181011143502.y8x7/catalogue/american-aqua-andheri-east-mumbai-mineral-water-dealers-1p7uuyovyv.jpg" alt="Water Bottle" class="food-card-image">
+                        <div class="food-card-details">
+                            <div>
+                                <h3>Water Bottle</h3>
+                                <p style="font-size: 0.8em; color: #718096; margin-bottom: 5px;">Drinks, Beverages</p>
+                            </div>
+                            <div class="food-card-info">
+                                <span class="food-card-price">₹ 30.00</span>
+                                <button class="action-btn" onclick="addToCart('Water Bottle', 30)">Add to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </section>
+
+            <section id="cartSummary" class="summary-box">
+                <h3>Your Cart Summary</h3>
+                <p id="cartItems">Total Items: 0 | Total Price: ₹ 0.00</p>
+                <button id="proceedToOrderBtn" class="action-btn" onclick="showSeatValidation()">Proceed to Order</button>
+            </section>
+
+            <section id="seatValidationSection" class="step-box hidden">
+                <h3>Enter Your Seat Number (1 - 10)</h3>
+                <input type="number" id="seatNoInput" min="1" max="10" placeholder="e.g. 5">
+                <button class="action-btn" onclick="validateSeatAndShowBill()">Proceed to Payment</button>
+            </section>
+
+            <section id="paymentSection" class="step-box hidden">
+                <h3>Confirm Bill & Contactless Payment</h3>
+                
+                <div id="billDetails" class="bill-details">
+                    </div>
+
+                <div class="qr-container">
+                    <p style="font-size: 0.9em;">Scan to Complete Payment (Simulated for secure delivery verification)</p>
+                    <div class="qr-placeholder"><img src="https://i.pinimg.com/736x/a8/69/40/a86940a4ed8a69539b341f3c414c47b3.jpg" alt="QR Code Image"></div>
+                </div>
+
+                <button class="action-btn" onclick="showConfirmation()">I have Completed the Payment</button>
+            </section>
+
+            <section id="confirmationSection" class="step-box hidden">
+                <h3 style="color: #48bb78;">🎉 Congrats! Your order has been placed.</h3>
+                <p>The **Automated Delivery Robot** is now preparing to fetch your food. Order ID: **[Simulated ID]**</p>
+                <button class="action-btn" onclick="window.location.href='index.html'">Go to Home Page</button>
+            </section>
+
+        </main>
+    </div>
+
+    <script>
+        // NOTE: The JavaScript logic remains the same as it correctly handles the expanded menu items and prices.
+        let cart = [];
+        let total = 0;
+        let seatNo = 0;
+
+        function updateCartDisplay() {
+            total = cart.reduce((sum, item) => sum + item.price, 0);
+            document.getElementById('cartItems').innerHTML = `Total Items: ${cart.length} | Total Price: ₹ ${total.toFixed(2)}`;
+            document.getElementById('proceedToOrderBtn').disabled = cart.length === 0;
+        }
+
+        function addToCart(name, price) {
+            cart.push({ name, price });
+            updateCartDisplay();
+        }
+        
+        updateCartDisplay();
+
+
+        function showSeatValidation() {
+            if (cart.length === 0) {
+                alert("Please add items to your cart first.");
+                return;
+            }
+            document.getElementById('menuSection').classList.add('hidden');
+            document.getElementById('cartSummary').classList.add('hidden');
+            document.getElementById('seatValidationSection').classList.remove('hidden');
+        }
+
+        function validateSeatAndShowBill() {
+            const input = document.getElementById('seatNoInput');
+            seatNo = parseInt(input.value);
+
+            if (isNaN(seatNo) || seatNo < 1 || seatNo > 10) {
+                alert("⚠️ Invalid Seat Number. Please enter a number between 1 and 10.");
+                return;
+            }
+
+            document.getElementById('seatValidationSection').classList.add('hidden');
+            document.getElementById('paymentSection').classList.remove('hidden');
+            
+            let billHTML = `<h4>Order for Seat No. ${seatNo}</h4>`;
+            
+            const groupedCart = cart.reduce((acc, item) => {
+                acc[item.name] = (acc[item.name] || { count: 0, price: item.price });
+                acc[item.name].count++;
+                return acc;
+            }, {});
+
+            for (const name in groupedCart) {
+                const item = groupedCart[name];
+                billHTML += `<div class="bill-item"><span>${name} x ${item.count}</span><span>₹ ${(item.price * item.count).toFixed(2)}</span></div>`;
+            }
+
+            const tax = total * 0.05; 
+            const finalTotal = total + tax;
+            
+            billHTML += `<div class="bill-item" style="border-top: 1px solid #ddd; padding-top: 10px;"><span>Tax (5%)</span><span>₹ ${tax.toFixed(2)}</span></div>`;
+            billHTML += `<div class="total bill-item"><span>Final Total</span><span>₹ ${finalTotal.toFixed(2)}</span></div>`;
+
+            document.getElementById('billDetails').innerHTML = billHTML;
+        }
+
+        function showConfirmation() {
+            document.getElementById('paymentSection').classList.add('hidden');
+            document.getElementById('confirmationSection').classList.remove('hidden');
+            
+            const newOrder = {
+                id: Math.floor(Math.random() * 1000) + 1000,
+                seat: seatNo,
+                items: cart.map(item => item.name).join(', '), 
+                time: new Date().toLocaleTimeString(),
+                status: 'Pending'
+            };
+
+            let orders = JSON.parse(localStorage.getItem('pendingOrders')) || [];
+            orders.push(newOrder);
+            localStorage.setItem('pendingOrders', JSON.stringify(orders));
+        }
+    </script>
+</body>
+</html>
